@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "ffa3edb5-2c9f-4c3d-b5c6-bf88cf7ab3cf",
+		"name": "Node Boilerplate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "740d010b-2bb4-494e-a89a-515c3082f6ee",
+								"exec": [
+									"var jsonData = pm.response.json()",
+									"pm.environment.set(\"token\", jsonData[\"data\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"email\":\"martin.biganzoli@decemberlabs.com\",\n \"password\":\"decemberlabs\"\n}\n\t\n"
+						},
+						"url": {
+							"raw": "{{api_url_v1}}/authenticate",
+							"host": [
+								"{{api_url_v1}}"
+							],
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Martin\",\n\t\"lastName\":\"Biganzoli\",\n\t\"email\":\"martin.biganzoli@decemberlabs.com\",\n\t\"password\":\"decemberlabs\"\n}"
+						},
+						"url": {
+							"raw": "{{api_url_v1}}/register",
+							"host": [
+								"{{api_url_v1}}"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "Create a new user in the DB. You need to specify in the body the following attributes: name, lastname, email & password."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Martin\",\n\t\"lastName\":\"Lopez\"\n}"
+						},
+						"url": {
+							"raw": "{{api_url_v1}}/users/1",
+							"host": [
+								"{{api_url_v1}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Updates an already created user in the DB"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api_url_v1}}/users",
+							"host": [
+								"{{api_url_v1}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Returns the collection of users present in the DB"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api_url_v1}}/users/1",
+							"host": [
+								"{{api_url_v1}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "It returns the specified id user. You need to specify the token in the header with the following format: Authorization: Bearer your-token"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api_url_v1}}/users/1",
+							"host": [
+								"{{api_url_v1}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Deletes a user from the DB"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
