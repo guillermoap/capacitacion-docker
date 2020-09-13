@@ -1,14 +1,13 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import {Request, Response} from 'express';
 import * as jwt from 'jwt-then';
 import config from "../../config/config";
-// import {User} from '../../db/models/user.model';
+import {User} from '../../db/models/user.model';
 
 export async function authenticate(req: Request, res: Response): Promise<any> {
 	const {email, password} = req.body;
 	try {
-		// const user = await User.findOne({where: {email: req.body.email}});
-		const user = null
+		const user = await User.findOne({where: {email: req.body.email}});
 		if (!user) {
 			return res.status(404).send({
 				success: false,
@@ -46,14 +45,12 @@ export async function register(req: Request, res: Response): Promise<any> {
 	try {
 		const hash = await bcrypt.hash(password, parseInt(config.SALT_ROUNDS, 10));
 
-		// const user = new User({
-		// 	name,
-		// 	lastName,
-		// 	email,
-		// 	password: hash,
-		// });
-
-		const user = null
+		const user = new User({
+			name,
+			lastName,
+			email,
+			password: hash,
+		});
 
 		const newUser = await user.save();
 
@@ -68,11 +65,4 @@ export async function register(req: Request, res: Response): Promise<any> {
 			message: err.toString(),
 		});
 	}
-}
-
-export async function status(req: Request, res: Response): Promise<any> {
-	res.status(200).send({
-		success: true,
-		message: 'NODE API'
-	})
 }

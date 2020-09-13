@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
-// import { User } from "../../db/models/user.model";
+import { User } from "../../db/models/user.model";
 
 export async function findAll(req: Request, res: Response): Promise<any> {
   try {
-    // const users = await User.findAll({
-    //   attributes: { exclude: ["password", "deletionDate"] }
-    // });
-    const users = null
+    const users = await User.findAll({
+      attributes: { exclude: ["password", "deletionDate"] }
+    });
     if (!users) {
       return res.status(404).send({
         success: false,
@@ -30,10 +29,9 @@ export async function findAll(req: Request, res: Response): Promise<any> {
 
 export async function findOne(req: Request, res: Response): Promise<any> {
   try {
-    // const user = await User.findById(req.params.id, {
-    //   attributes: { exclude: ["password", "deletionDate"] }
-    // });
-    const user = null
+    const user = await User.findByPk(req.params.id, {
+      attributes: { exclude: ["password", "deletionDate"] }
+    });
     if (!user) {
       return res.status(404).send({
         success: false,
@@ -57,10 +55,9 @@ export async function findOne(req: Request, res: Response): Promise<any> {
 
 export async function update(req: Request, res: Response): Promise<any> {
   try {
-    // const userUpdated = await User.update(req.body, {
-    //   where: { id: req.params.id }
-    // });
-    const userUpdated = null
+    const userUpdated = await User.update(req.body, {
+      where: { id: req.params.id }
+    });
     if (!userUpdated) {
       return res.status(404).send({
         success: false,
@@ -83,8 +80,7 @@ export async function update(req: Request, res: Response): Promise<any> {
 
 export async function remove(req: Request, res: Response): Promise<any> {
   try {
-    // const user = await User.destroy({ where: { id: req.params.id } });
-    const user = null
+    const user = await User.destroy({ where: { id: req.params.id } });
 
     if (!user) {
       return res.status(404).send({

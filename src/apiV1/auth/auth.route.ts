@@ -9,6 +9,4 @@ user.post("/authenticate", controller.authenticate);
 // Register New User
 user.post("/register", controller.register);
 
-user.get("/", controller.status)
-
 export default user;
