@@ -2,11 +2,12 @@ version: '3.7'
 services:
   web:
     build: .
+    command: npm run dev
     ports:
       - '5400:5400'
     volumes:
-      - .:/app
-      - /app/node_modules
+      - ./src:/app/capacitacion-docker/src
+      - ./.env:/app/capacitacion-docker/.env
     depends_on:
       - mysql
   mysql:
