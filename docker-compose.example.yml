@@ -6,6 +6,7 @@ services:
       - '5400:5400'
     volumes:
       - .:/app
+      - /app/node_modules
     depends_on:
       - mysql
   mysql:
