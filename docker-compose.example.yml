@@ -2,20 +2,20 @@ version: '3.7'
 services:
   api:
     build:
-      context: /home/dlabs/decemberLabs/capacitacion-docker
+      context: ${PARENT_PWD}/capacitacion-docker
     command: npm run dev
     ports:
-      - '5400:5400'
+      - '5000:5000'
     volumes:
-      - /home/dlabs/decemberLabs/capacitacion-docker/src:/app/capacitacion-docker/src
-      - /home/dlabs/decemberLabs/capacitacion-docker/.env:/app/capacitacion-docker/.env
+      - ${PARENT_PWD}/capacitacion-docker/src:/app/capacitacion-docker/src
+      - ${PARENT_PWD}/capacitacion-docker/.env:/app/capacitacion-docker/.env
     depends_on:
       - mysql
   mysql:
     image: mysql:5.7
     environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=pis-septemberlabs
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
     ports:
       - '3306:3306'
     volumes:
