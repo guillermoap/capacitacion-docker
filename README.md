@@ -16,6 +16,10 @@ Add corresponding config values
 ## Copy `docker-compose.example.yml` and rename to `docker-compose.yml`
 
 # Running
+Before running the project you must create the custom network for the containers. To do so, run
+
+    docker network create pis-septemberlabs
+
 To run the project simply run
 
     docker-compose up
@@ -45,9 +49,9 @@ After this exit the container and run
 
 This will restart the containers and now we should be seeing this
 
-    api_1     | Executing (default): SELECT 1+1 AS result
-    api_1     | CONNECTION ESTABLISHED SUCCESSFULLY
-    api_1     | Server is listening on 5000
+    pis-septemberlabs_api_1     | Executing (default): SELECT 1+1 AS result
+    pis-septemberlabs_api_1     | CONNECTION ESTABLISHED SUCCESSFULLY
+    pis-septemberlabs_api_1     | Server is listening on 5000
 
 ## Running all the projects at once
 
@@ -60,6 +64,10 @@ In order to run the API, webapp and admin all together simply run
     docker-compose -f docker-compose.yml -f ../capacitacion-webapp/docker-compose.yml -f ../capacitacion-admin/docker-compose.yml up
 
 For this to work you have to be running everything form this folder. If you want to change folders change the paths appropiately.
+
+If you want to stop everything `^C` in the interactive terminal and wait for everything to shutdown, or run
+
+    docker-compose -f docker-compose.yml -f ../capacitacion-webapp/docker-compose.yml -f ../capacitacion-admin/docker-compose.yml down
 
 # Migrations
 ## Creating migrations
