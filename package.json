@@ -12,6 +12,7 @@
     "lint": "eslint src/**/*.ts --fix",
     "sequelize": "npx ts-node ./node_modules/.bin/sequelize",
     "migrate": "sh migrate.sh",
+    "migration-generate": "sh migration-generate.sh",
     "seed": "npm run sequelize db:seed:all"
   },
   "repository": {
