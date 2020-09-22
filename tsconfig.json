@@ -9,6 +9,6 @@
     "allowJs": true,
     "declaration": false
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/db/models/.model.ts"],
   "exclude": ["node_modules"]
 }

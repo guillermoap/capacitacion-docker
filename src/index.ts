@@ -6,7 +6,7 @@ const PORT = config.PORT;
 
 (async () => {
   await sequelize
-    .sync({ force: false })
+    .authenticate()
     .then(() => {
       console.log("CONNECTION ESTABLISHED SUCCESSFULLY");
     })

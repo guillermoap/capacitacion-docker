@@ -1,5 +1,6 @@
 import dotEnv = require('dotenv');
 dotEnv.config();
+
 export default {
 	APP: process.env.APP,
 	PORT: process.env.PORT,
