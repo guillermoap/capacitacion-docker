@@ -1,8 +1,13 @@
 version: '3.7'
+networks:
+  default:
+    external:
+      name: pis-septemberlabs
 services:
   api:
     build:
       context: ${PARENT_PWD}/capacitacion-docker
+    container_name: pis-septemberlabs_api
     command: npm run dev
     ports:
       - '5000:5000'
@@ -13,6 +18,7 @@ services:
       - mysql
   mysql:
     image: mysql:5.7
+    container_name: pis-septemberlabs_mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - MYSQL_DATABASE=${DB_NAME}
